@@ -14,8 +14,8 @@ ________________________________________________________________________________
 
 Section2:
 
-Arduino Uno and Nano has only 6 PWM pins for controlling servos, so by using PCA9685 servo driver module, 16 servos can be controlled by using one Arduino board.
+Disable power of servos is not a practical way becuase it is not designed for such that, however, disable power for motors generally must be down via a relay or MOSFET due to the high current drain by the motor - stalling current can be as high as 500 mA or more. 
 
-The communication between the driver module and Arduino is based on I2C, so that only two pins are needed for connections (A4 and A5).
+In this section, I used MOSFET N-channel (IRF520) for disable the power to the servo, as well as detach() function to disable sending PWM signal. 
 
-Digital pins (2 3 4 5) are used along Transistor NPN 
+Again, when need to move the servo, two things should be done, enable power & PWM signal via attach() function. 
